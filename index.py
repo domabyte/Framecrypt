@@ -1,3 +1,6 @@
+import os
+import zipfile
+
 #global errorhandling program
 def errorHandling(param1,param2):
         try:
@@ -12,8 +15,38 @@ def errorHandling(param1,param2):
             print("OOPs feelin' like a very strong keyboard stroke")
             raise Exception("Thanks for coming!!")
 
+
+def create_passwd_protected_zip(file_name,passwd):
+
+    # Create a zip file with the given password
+
+    with zipfile.ZipFile(f"{file_name}.zip", "w", zipfile.ZIP_DEFLATED) as zipf:
+        zipf.setpassword(passwd.encode())
+        zipf.write(file_name)
+    print("Zip file created successfully.")
+# else:
+    # print("File not found in the current directory.")
+
+    print(str(os.path.isfile(file_name)))
+    while str(os.path.isfile(file_name)) != "True":
+         print("Oops! File is missing in the current directory")
+    file_size = os.path.getsize(file_name)
+
+
+    #Check if encoded file exists
+    file_num = 1
+    if os.path.exists(f'{file_name}.mp4') is False:
+         pass
+    else:
+         while os.path.exists(f'{file_name}({file_num}).mp4'):
+              file_num += 1
+         file_name = f'{file_name}({file_num})'
+
+
 def encoding():
-     print("ENCODING DONE!!")
+    file_name = input("Enter a file or folder name [e.g. file.txt] which you want to encode into frames: ")
+    passwd = input("Enter the password to protect zip file: ")
+    create_passwd_protected_zip(file_name,passwd)
 
 def decoding():
      print("DECODING DONE!!")
@@ -47,25 +80,32 @@ if __name__ == "__main__":
 
 
 
-
-
+from zipfile import ZipFile
 import os
-import zipfile
 
-def create_password_protected_zip(directory, password):
-    # Iterate over all files in the directory
-    for root, _, files in os.walk(directory):
-        for file in files:
-            file_path = os.path.join(root, file)
-            # Create a zip file with the same name as the original file
-            zip_filename = f"{file_path}.zip"
-            with zipfile.ZipFile(zip_filename, "w", zipfile.ZIP_DEFLATED) as zipf:
-                # Set a password for the zip file
-                zipf.setpassword(password.encode())
-                # Add the file to the zip file
-                zipf.write(file_path, os.path.basename(file_path))
+def zip_create(directory, password):
+    def get_all_file_paths(directory):
+        file_paths = []
+        for root, directories, files in os.walk(directory):
+            for filename in files:
+                filepath = os.path.join(root, filename)
+                file_paths.append(filepath)
+        return file_paths
+    
+    file_paths = get_all_file_paths(directory)
+    print(file_paths)
+    
+    for file_name in file_paths:
+        print(file_name)
+    
+    with ZipFile(directory + '.zip', 'w') as zip:
+        zip.setpassword(password)  # Set the password for the zip file
+        os.chdir(directory)
+        
+        for file in file_paths:
+            zip.write(file)
+        
+        print('All files zipped successfully!')
 
-    print(f"All files in {directory} have been converted to password-protected zip files.")
-
-# Example usage
-create_password_protected_zip("path/to/directory", "password123")
+# Example usage:
+zip_create('/path/to/directory', 'password123')
