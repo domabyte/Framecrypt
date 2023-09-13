@@ -3,12 +3,10 @@
 The **Encoder-Decoder Tool** is a command-line utility that allows you to encode files into a video format and decode them back to their original format. This tool is useful for hiding sensitive files within video frames and protecting them with a password.
 
 ## Table of Contents
-- [Prerequisites](#prerequisites)
 - [Getting Started](#getting-started)
+- [Prerequisites](#prerequisites)
   - [Encoding a File](#encoding-a-file)
   - [Decoding a File](#decoding-a-file)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Getting Started
 To get started with the Encoder-Decoder Tool, follow the instructions below.
