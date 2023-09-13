@@ -30,7 +30,7 @@ Run the following command to install the required dependencies from `requirement
 
     2. Open a terminal and navigate to the project directory.
 
-    3. Run the main.py script: ```python main.py```
+    3. Run the main.py script: <mark>python main.py</mark>
 
     4. Select "Encode a file" (Option 1) from the menu.
 
