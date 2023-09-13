@@ -4,11 +4,12 @@ import time
 from PIL import Image, ImageDraw
 import pyminizip
 import zipfile
+from tqdm import tqdm
 
 def error_handling(prompt, validator):
     while True:
         try:
-            user_input = input(prompt)
+            user_input = input(prompt).strip("'\"")
             if validator(user_input):
                 return user_input
             else:
@@ -19,8 +20,8 @@ def error_handling(prompt, validator):
 
 def create_password_protected_zip(file_name, password):
     try:
-        file_name_without_extension, _ = os.path.splitext(os.path.basename(file_name))
-        pyminizip.compress(file_name, None, f'{file_name_without_extension}.zip', password, 5)
+        # file_name_without_extension = os.path.splitext(os.path.basename(file_name))[0]
+        pyminizip.compress(file_name, None, f'song.zip', password, 5)
         print("Password-protected ZIP file created successfully!")
     except Exception as e:
         print(f'An error occurred: {str(e)}')
@@ -136,7 +137,7 @@ def decode_frames(input_file, output_file):
         output_file = input("What should I name the output file?: ")
 
     # Define Output File
-    output_file = input("What should I name the output file? (i.e output.zip): ")
+    # output_file = input("What should I name the output file? (i.e output.zip): ")
     while str(os.path.exists(output_file)) == "True":
         print("Oops! File already exists.")
         output_file = input("What should I name the output file?: ")
@@ -202,7 +203,9 @@ def main():
     elif user_choice == "2":
         input_file = error_handling("Enter the file to decode: ", os.path.isfile)
         output_file = error_handling("Enter the output file name: ", lambda x: not os.path.exists(x))
-        decode_frames(input_file, output_file)
+        password = str(input("Enter password to extract : "))
+        extract_password_protected_zip(input_file,password)
+        # decode_frames(input_file, output_file)
     else:
         print("Invalid choice. Exiting.")
 
