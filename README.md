@@ -44,7 +44,7 @@ Run the following command to install the required dependencies from `requirement
 
   2. Select "Decode a file" (Option 2) from the menu.
 
-  3. Enter the name of the video file that contains the encoded data. You can press Tab to autocomplete the filename.
+  3. Enter the name of the video file that contains the encoded data.
 
   4. The tool will decode the data from the video frames and save it as decoded_file.zip.
 
