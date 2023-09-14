@@ -1,5 +1,5 @@
 from error_handling import prompt_user
-from create_password_protected_zip import create_password_protected_zip
+from thread_music import perform_encoding
 from decode_frames import decode_frames
 from greeting import display_intro
 import os
@@ -16,7 +16,7 @@ def main():
     if user_choice == "1":
         input_file = prompt_user("Enter the file to encode: ", os.path.isfile)
         password = input("Enter a password to protect the ZIP file: ")
-        create_password_protected_zip(input_file, password)
+        perform_encoding(input_file,password)
     elif user_choice == "2":
         input_file = prompt_user("Enter the file to decode (e.g., encoded_video.mp4): ", os.path.isfile)
         decode_frames(input_file)
