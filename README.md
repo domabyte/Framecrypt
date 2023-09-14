@@ -51,3 +51,6 @@ Run the following command to install the required dependencies from `requirement
   5. Enter the password you used to protect the ZIP file during encoding.
 
   6. The tool will extract the original file from decoded_file.zip.
+
+
+[NOTE]: If installing requirements.txt leads to any error then please try this script into linux environment.
