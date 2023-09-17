@@ -5,13 +5,9 @@ const { google } = require("googleapis");
 const progressStream = require("progress-stream");
 const service = google.youtube("v3");
 const path = require("path");
-const {title,description,tags} = require("./shared");
+const {title,description,tags} = require("../Youtube-Upload/shared");
 
 const uploadVideo = (auth) => {
-  const log = console.log;
-  log("Title is : ", title);
-  log("Description is : ", description);
-  log("Tags are : ", tags);
   const videoPath = path.join(__dirname, "../encoded_video.mp4");
   const fileSize = fs.statSync(videoPath).size;
 
