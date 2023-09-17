@@ -12,7 +12,7 @@ def play_music(song_name):
 # Function to perform encoding
 def perform_encoding(input_file, password):
     # Start the music thread before encoding
-    music_thread = threading.Thread(target=play_music('Neil Sedaka - Oh! Carol.mp3'))
+    music_thread = threading.Thread(target=play_music('./songs/Neil Sedaka - Oh! Carol.mp3'))
     music_thread.start()
     create_password_protected_zip(input_file, password)
     # Wait for the music thread to finish
@@ -21,14 +21,14 @@ def perform_encoding(input_file, password):
 # Function to perform decoding
 def perform_decoding(input_file):
     # Start the music thread before decoding
-    music_thread = threading.Thread(target=play_music('testing_file_song.mp3'))
+    music_thread = threading.Thread(target=play_music('./songs/In the still of the night.mp3'))
     music_thread.start()
     decode_frames(input_file)
     # Wait for the music thread to finish
     music_thread.join()
 
 def perform_uploading():
-    music_thread = threading.Thread(target=play_music("Engelbert Humperdinck - Can't Take My Eyes Off You.mp3"))
+    music_thread = threading.Thread(target=play_music("./songs/Engelbert Humperdinck - Can't Take My Eyes Off You.mp3"))
     music_thread.start()
     upload_video_to_youtube()
     music_thread.join()
