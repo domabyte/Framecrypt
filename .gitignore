@@ -1,2 +1,4 @@
 __pycache__
 .env
+client_secret.json
+encoded_video.mp4
