@@ -116,9 +116,3 @@ function getChannel(auth) {
     }
   );
 }
-
-const log = console.log;
-log("Title is : ",title)
-log("Description is : ",description);
-log("Tags are : ",tags);
-module.exports = {title,description,tags};
