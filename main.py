@@ -1,5 +1,5 @@
 from error_handling import prompt_user
-from thread_music import perform_encoding,perform_decoding
+from thread_music import perform_encoding,perform_decoding,perform_uploading
 from decode_frames import decode_frames
 from greeting import display_intro
 from upload import upload_video_to_youtube
@@ -23,9 +23,9 @@ def main():
     elif user_choice == "2":
         input_file = prompt_user("Enter the file to decode (e.g., encoded_video.mp4): ", os.path.isfile)
         perform_decoding(input_file)
-        
+
     elif user_choice == "3":
-        upload_video_to_youtube()
+        perform_uploading()
     else:
         print("Invalid choice. Exiting.")
 
