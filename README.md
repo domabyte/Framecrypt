@@ -54,3 +54,5 @@ Run the following command to install the required dependencies from `requirement
 
 
 [NOTE]: If installing requirements.txt leads to any error then please try this script into linux environment.
+   
+                                                                                             ~Dikshit singh
