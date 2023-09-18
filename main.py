@@ -3,6 +3,7 @@ from thread_music import perform_encoding,perform_decoding,perform_uploading
 from decode_frames import decode_frames
 from greeting import display_intro
 from upload import upload_video_to_youtube
+from download import download_yt_video
 import os
 
 def main():
@@ -11,8 +12,9 @@ def main():
     print("[1] Encode a file")
     print("[2] Decode a file")
     print("[3] Upload the file to youtube")
+    print("[4] Download yours uploaded videos")
 
-    user_choice = prompt_user("Enter your choice (1/2/3): ", lambda x: x in ["1", "2","3"])
+    user_choice = prompt_user("Enter your choice (1/2/3/4): ", lambda x: x in ["1", "2","3","4"])
 
     #Handling user_choice
     if user_choice == "1":
@@ -26,6 +28,10 @@ def main():
 
     elif user_choice == "3":
         perform_uploading()
+
+    elif user_choice == "4":
+        download_yt_video()
+        
     else:
         print("Invalid choice. Exiting.")
 
