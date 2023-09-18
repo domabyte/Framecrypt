@@ -23,7 +23,7 @@ var TOKEN_DIR =
   "/.credentials/";
 var TOKEN_PATH = TOKEN_DIR + "youtube-nodejs-quickstart.json";
 
-var CLIENT_SECRETS_PATH = path.join(__dirname, "../client_secret.json");
+var CLIENT_SECRETS_PATH = path.join(__dirname, "./client_secrets.json");
 
 // Load client secrets from a local file.
 fs.readFile(CLIENT_SECRETS_PATH, function processClientSecrets(err, content) {
