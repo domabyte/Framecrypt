@@ -4,12 +4,10 @@ const { google } = require("googleapis");
 const OAuth2 = google.auth.OAuth2;
 const uploadVideo = require("./uploadVideo");
 const path = require("path");
-const ytdl = require("ytdl-core");
 
 var SCOPES = [
   "https://www.googleapis.com/auth/youtube.readonly",
   "https://www.googleapis.com/auth/youtube.upload",
-  "https://www.googleapis.com/auth/youtube.force-ssl"
 ];
 
 const str_checker = process.argv[2];
@@ -19,7 +17,7 @@ const TOKEN_DIR =
   "/.credentials/";
 const TOKEN_PATH = TOKEN_DIR + "youtube-nodejs-quickstart.json";
 
-const CLIENT_SECRETS_PATH = path.join(__dirname, "../client_secret.json");
+const CLIENT_SECRETS_PATH = path.join(__dirname, "./client_secrets.json");
 
 // Load client secrets from a local file.
 fs.readFile(CLIENT_SECRETS_PATH, function processClientSecrets(err, content) {
@@ -95,7 +93,6 @@ function handleAuthorization(auth) {
 function listAndDownloadVideos(auth) {
   const service = google.youtube("v3");
 
-  // List the user's videos
   service.channels.list(
     {
       auth: auth,
@@ -111,15 +108,14 @@ function listAndDownloadVideos(auth) {
       if (channels.length == 0) {
         console.log("No channel found.");
       } else {
-        const uploadPlaylistId = channels[0].contentDetails.relatedPlaylists.uploads;
-
-        // List videos in the user's uploads playlist
+        const uploadPlaylistId =
+          channels[0].contentDetails.relatedPlaylists.uploads;
         service.playlistItems.list(
           {
             auth: auth,
             part: "snippet",
             playlistId: uploadPlaylistId,
-            maxResults: 50, // You can adjust the number of videos to retrieve
+            maxResults: 50,
           },
           function (err, response) {
             if (err) {
@@ -131,8 +127,6 @@ function listAndDownloadVideos(auth) {
               console.log("No videos found in the uploads playlist.");
             } else {
               console.log("List of uploaded videos:");
-
-              // Display video titles and provide the option to download
               videos.forEach((video, index) => {
                 console.log(`${index + 1}. ${video.snippet.title}`);
                 console.log(`   Video ID: ${video.snippet.resourceId.videoId}`);

@@ -5,10 +5,10 @@ const { google } = require("googleapis");
 const progressStream = require("progress-stream");
 const service = google.youtube("v3");
 const path = require("path");
-const {title,description,tags} = require("../Youtube-Upload/shared");
+const {videoName,title,description} = require("../Youtube-Upload/shared");
 
 const uploadVideo = (auth) => {
-  const videoPath = path.join(__dirname, "../encoded_video.mp4");
+  const videoPath = path.join(__dirname, `../encoded_videos/${videoName}`);
   const fileSize = fs.statSync(videoPath).size;
 
   const progress = progressStream({
@@ -34,8 +34,7 @@ const uploadVideo = (auth) => {
       resource: {
         snippet: {
           title: title,
-          description: description,
-          tags: tags,
+          description: description
         },
         status: {
           privacyStatus: "private",

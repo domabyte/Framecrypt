@@ -3,3 +3,5 @@ command.txt
 Vod-Uploader.py-*
 Rename-Vid.py
 node_modules/
+__pycache__
+client_secrets.json
