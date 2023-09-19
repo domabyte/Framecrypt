@@ -5,7 +5,10 @@ import zipfile
 def extract_password_protected_zip(zip_file_name, password):
     try:
         with zipfile.ZipFile(zip_file_name, "r") as zip_file:
-            zip_file.extractall(pwd=password.encode())
+            output_dir = "decoded_files"
+            if not os.path.exists(output_dir):
+                os.makedir(output_dir)
+            zip_file.extractall(pwd=password.encode(), path=output_dir)
         print("Password-protected ZIP file successfully extracted!")
         os.remove(zip_file_name)
     except zipfile.BadZipFile as e:
