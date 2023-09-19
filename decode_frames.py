@@ -5,10 +5,12 @@ from PIL import Image
 from extract_password_protected_zip import extract_password_protected_zip
 
 def decode_frames(input_file):
-    while not os.path.isfile(input_file):
+    decoded_file = os.path.join("encoded_videos",input_file)
+
+    while not os.path.isfile(decoded_file):
         print("Oops! File does not exist.")
-        input_file = input("Enter the file to decode: ")
-    cap = cv2.VideoCapture(input_file)
+        decoded_file = input("Enter the file to decode: ")
+    cap = cv2.VideoCapture(decoded_file)
 
     output_file = "decoded_file.zip"
 
@@ -64,7 +66,6 @@ def decode_frames(input_file):
     os.remove("cache.png")
     file.close()
     print("Decoding completed successfully.")
-    os.remove(input_file)
     password = str(input("Enter the password to extract: "))
     extract_password_protected_zip(output_file, password)
 

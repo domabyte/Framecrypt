@@ -5,7 +5,13 @@ from PIL import Image, ImageDraw
 from tqdm import tqdm
 
 def encode_to_frames(input_file):
-    output_file_name = "encoded_video"
+    output_directory = "encoded_videos"
+
+    # Check if the output directory exists, create it if not
+    if not os.path.exists(output_directory):
+        os.makedirs(output_directory)
+        
+    output_file_name = os.path.join(output_directory,"encoded_video")
     file_num = 1
 
    # Check if the encoded file exists
