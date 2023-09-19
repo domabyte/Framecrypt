@@ -112,6 +112,7 @@ Run the following command to install the required dependencies from `requirement
 
   3. You will see all the videos that you have uploaded from the authorised channel with videoID.
 
-    [NOTE]: If installing requirements.txt leads to any error then please try this script into linux environment and install manually.
-   
+    [NOTES]: 
+    - If installing requirements.txt leads to any error then please try this script into linux environment and install manually.
+    - Downloading back your youtube videos into lower quality can corrupt the file. So please download videos into 720p format.
                                                                                              ~Dikshit singh
