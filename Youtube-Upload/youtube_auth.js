@@ -4,26 +4,22 @@ const { google } = require("googleapis");
 const OAuth2 = google.auth.OAuth2;
 const uploadVideo = require("./uploadVideo");
 const path = require("path");
+const ytdl = require("ytdl-core");
 
 var SCOPES = [
   "https://www.googleapis.com/auth/youtube.readonly",
   "https://www.googleapis.com/auth/youtube.upload",
+  "https://www.googleapis.com/auth/youtube.force-ssl"
 ];
-if (process.argv.length < 5) {
-  console.error("Usage: node youtube_auth.js <title> <description> <tags>");
-  process.exit(1);
-}
 
-const title = process.argv[2];
-const description = process.argv[3];
-const tags = process.argv[4];
+const str_checker = process.argv[2];
 
-var TOKEN_DIR =
+const TOKEN_DIR =
   (process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE) +
   "/.credentials/";
-var TOKEN_PATH = TOKEN_DIR + "youtube-nodejs-quickstart.json";
+const TOKEN_PATH = TOKEN_DIR + "youtube-nodejs-quickstart.json";
 
-var CLIENT_SECRETS_PATH = path.join(__dirname, "./client_secrets.json");
+const CLIENT_SECRETS_PATH = path.join(__dirname, "../client_secret.json");
 
 // Load client secrets from a local file.
 fs.readFile(CLIENT_SECRETS_PATH, function processClientSecrets(err, content) {
@@ -31,14 +27,14 @@ fs.readFile(CLIENT_SECRETS_PATH, function processClientSecrets(err, content) {
     console.log("Error loading client secret file: " + err);
     return;
   }
-  authorize(JSON.parse(content), uploadVideo);
+  authorize(JSON.parse(content), handleAuthorization);
 });
 
 function authorize(credentials, callback) {
-  var clientSecret = credentials.web.client_secret;
-  var clientId = credentials.web.client_id;
-  var redirectUrl = credentials.web.redirect_uris[0];
-  var oauth2Client = new OAuth2(clientId, clientSecret, redirectUrl);
+  const clientSecret = credentials.web.client_secret;
+  const clientId = credentials.web.client_id;
+  const redirectUrl = credentials.web.redirect_uris[0];
+  const oauth2Client = new OAuth2(clientId, clientSecret, redirectUrl);
 
   fs.readFile(TOKEN_PATH, function (err, token) {
     if (err) {
@@ -51,12 +47,12 @@ function authorize(credentials, callback) {
 }
 
 function getNewToken(oauth2Client, callback) {
-  var authUrl = oauth2Client.generateAuthUrl({
+  const authUrl = oauth2Client.generateAuthUrl({
     access_type: "offline",
     scope: SCOPES,
   });
   console.log("Authorize this app by visiting this url: ", authUrl);
-  var rl = readline.createInterface({
+  const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
   });
@@ -88,29 +84,79 @@ function storeToken(token) {
   });
 }
 
-function getChannel(auth) {
-  var service = google.youtube("v3");
+function handleAuthorization(auth) {
+  if (str_checker === "1") {
+    listAndDownloadVideos(auth);
+  } else {
+    uploadVideo(auth);
+  }
+}
+
+function listAndDownloadVideos(auth) {
+  const service = google.youtube("v3");
+
+  // List the user's videos
   service.channels.list(
     {
       auth: auth,
-      part: "snippet,contentDetails,statistics",
-      forUsername: "GoogleDevelopers",
+      part: "contentDetails",
+      mine: true,
     },
     function (err, response) {
       if (err) {
         console.log("The API returned an error: " + err);
         return;
       }
-      var channels = response.data.items;
+      const channels = response.data.items;
       if (channels.length == 0) {
         console.log("No channel found.");
       } else {
-        console.log(
-          "This channel's ID is %s. Its title is '%s', and " +
-            "it has %s views.",
-          channels[0].id,
-          channels[0].snippet.title,
-          channels[0].statistics.viewCount
+        const uploadPlaylistId = channels[0].contentDetails.relatedPlaylists.uploads;
+
+        // List videos in the user's uploads playlist
+        service.playlistItems.list(
+          {
+            auth: auth,
+            part: "snippet",
+            playlistId: uploadPlaylistId,
+            maxResults: 50, // You can adjust the number of videos to retrieve
+          },
+          function (err, response) {
+            if (err) {
+              console.log("The API returned an error: " + err);
+              return;
+            }
+            const videos = response.data.items;
+            if (videos.length == 0) {
+              console.log("No videos found in the uploads playlist.");
+            } else {
+              console.log("List of uploaded videos:");
+
+              // Display video titles and provide the option to download
+              videos.forEach((video, index) => {
+                console.log(`${index + 1}. ${video.snippet.title}`);
+                console.log(`   Video ID: ${video.snippet.resourceId.videoId}`);
+                const downloadOption = `Download (Press ${index + 1})`;
+                console.log(`   ${downloadOption}`);
+              });
+
+              // Prompt the user for video download choice
+              const rl = readline.createInterface({
+                input: process.stdin,
+                output: process.stdout,
+              });
+              rl.question("Enter the number of the video to download: ", (choice) => {
+                rl.close();
+                const videoIndex = parseInt(choice) - 1;
+                if (isNaN(videoIndex) || videoIndex < 0 || videoIndex >= videos.length) {
+                  console.log("Invalid choice. Please enter a valid number.");
+                } else {
+                  const selectedVideo = videos[videoIndex];
+                  const videoId = selectedVideo.snippet.resourceId.videoId;
+                }
+              });
+            }
+          }
         );
       }
     }
