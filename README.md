@@ -76,7 +76,9 @@ Run the following command to install the required dependencies from `requirement
 
   8. Paste this JSON in Youtube-Upload subfolder and this json to ```client_secrets.json```.
 
-  9. Now go to ```OAuth consent screen``` in google cloud and add Test Users [NOTE]: Only Tests users gmail can signin to youtube v3 api.
+  9. Now go to ```OAuth consent screen``` in google cloud and add Test Users.
+  
+    [NOTE]: Only Tests users gmail can signin to youtube v3 api.
 
   
 ## Uploading a file
@@ -110,7 +112,6 @@ Run the following command to install the required dependencies from `requirement
 
   3. You will see all the videos that you have uploaded from the authorised channel with videoID.
 
-
-[NOTE]: If installing requirements.txt leads to any error then please try this script into linux environment and install manually.
+    [NOTE]: If installing requirements.txt leads to any error then please try this script into linux environment and install manually.
    
                                                                                              ~Dikshit singh
