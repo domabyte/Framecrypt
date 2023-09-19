@@ -28,7 +28,7 @@ def perform_decoding(input_file):
     music_thread.join()
 
 def perform_uploading():
-    music_thread = threading.Thread(target=play_music("./songs/Engelbert Humperdinck - Can't Take My Eyes Off You.mp3"))
+    music_thread = threading.Thread(target=play_music("./songs/music.mp3"))
     music_thread.start()
     upload_video_to_youtube()
     music_thread.join()
