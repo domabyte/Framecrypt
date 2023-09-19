@@ -12,9 +12,8 @@ def main():
     print("[1] Encode a file")
     print("[2] Decode a file")
     print("[3] Upload the file to youtube")
-    print("[4] Download yours uploaded videos")
 
-    user_choice = prompt_user("Enter your choice (1/2/3/4): ", lambda x: x in ["1", "2","3","4"])
+    user_choice = prompt_user("Enter your choice (1/2/3): ", lambda x: x in ["1", "2","3"])
 
     #Handling user_choice
     if user_choice == "1":
@@ -28,9 +27,6 @@ def main():
 
     elif user_choice == "3":
         perform_uploading()
-
-    elif user_choice == "4":
-        download_yt_video()
         
     else:
         print("Invalid choice. Exiting.")
