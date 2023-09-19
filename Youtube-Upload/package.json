@@ -12,13 +12,8 @@
   "license": "ISC",
   "dependencies": {
     "auth": "^0.0.9",
-    "cb": "^0.1.1",
     "google-auth-library": "^9.0.0",
     "googleapis": "^126.0.1",
-    "mocha": "^10.2.0",
-    "node-apiless-youtube-upload": "^1.1.9",
-    "node-apiless-youtube-upload-nc": "^1.2.55",
-    "progress-stream": "^2.0.0",
-    "ytdl-core": "^4.11.5"
+    "progress-stream": "^2.0.0"
   }
 }
