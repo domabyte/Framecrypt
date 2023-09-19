@@ -82,7 +82,7 @@ Run the following command to install the required dependencies from `requirement
 
   
 ## Uploading a file
-  [NOTE]: Make sure you follow this steps to create client_secrets.json file [#creating YOUTUBE CLIENT SECRETS](creating-youtube-client-secrets)
+  [NOTE]: Make sure you follow this steps to create client_secrets.json file [creating YOUTUBE CLIENT SECRETS](#creating-youtube-client-secrets)
     
   1. Follow steps 1-3 from the "Encoding a File" section.
 
