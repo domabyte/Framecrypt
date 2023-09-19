@@ -3,8 +3,8 @@ from thread_music import perform_encoding,perform_decoding,perform_uploading
 from decode_frames import decode_frames
 from greeting import display_intro
 from upload import upload_video_to_youtube
-from download import download_yt_video
 import os
+import subprocess
 
 def main():
     display_intro()
@@ -12,6 +12,7 @@ def main():
     print("[1] Encode a file")
     print("[2] Decode a file")
     print("[3] Upload the file to youtube")
+    print("[4] To list the uploading videos of your channel")
 
     user_choice = prompt_user("Enter your choice (1/2/3): ", lambda x: x in ["1", "2","3"])
 
@@ -27,6 +28,12 @@ def main():
 
     elif user_choice == "3":
         perform_uploading()
+
+    elif user_choice == "4":
+        try:
+            subprocess.run(["node","./Youtube-Upload/youtube_auth.js","1"],check=True)
+        except subprocess.CalledProcessError as e:
+            print(f'Error fetching videos: {e}')
         
     else:
         print("Invalid choice. Exiting.")
