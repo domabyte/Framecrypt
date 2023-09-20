@@ -27,26 +27,26 @@ Before using this tool, make sure you have the following prerequisites installed
 - tqdm
 - mpyg321
 
-Run the following command to install the required dependencies from `requirements.txt`:
-    ```pip install -r requirements.txt```
-
-## Encoding a File
+## Installation
   1. Clone or download this repository to your local machine.
   
   2. Open a terminal and navigate to the project directory.
 
-  3. Run the main.py script: ```python main.py```
+  3. Run the following command to install the required dependencies ```sudo sh installation.sh```
 
-  4. Select "Encode a file" (Option 1) from the menu.
+## Encoding a File
+  1. Run the main.py script: ```sudo python main.py```
 
-  5. Enter the name to the file you want to encode when prompted [Note]: Please keep files in the same directory.
+  2. Select "Encode a file" (Option 1) from the menu.
 
-  6. Choose a password to protect the ZIP file containing the encoded data.
+  3. Enter the name to the file you want to encode when prompted [Note]: Please keep files in the same directory.
 
-  7. The tool will create a password-protected ZIP file with the encoded data and save it as locked.zip. It will also generate video frames containing the encoded data into encoded_videos folder and fun fact is that you could listen some of my favourite music in parallel.
+  4. Choose a password to protect the ZIP file containing the encoded data.
+
+  5. The tool will create a password-protected ZIP file with the encoded data and save it as locked.zip. It will also generate video frames containing the encoded data into encoded_videos folder and fun fact is that you could listen some of my favourite music in parallel.
 
 ## Decoding a File
-  1. Follow steps 1-3 from the "Encoding a File" section.
+  1. Run the main.py script: ```sudo python main.py```
 
   2. Select "Decode a file" (Option 2) from the menu.
 
@@ -57,7 +57,6 @@ Run the following command to install the required dependencies from `requirement
   5. Enter the password you used to protect the ZIP file during encoding.
 
   6. The tool will extract the original file from decoded_file.zip into decoded_files folder.
-
 
 ## Creating YOUTUBE CLIENT SECRETS
   1. To choose this option you have to use YOUTUBE v3 API from google cloud. Follow this link to login/signup into your [_Google Cloud Console_](https://console.cloud.google.com/)
@@ -74,7 +73,7 @@ Run the following command to install the required dependencies from `requirement
 
   7. Add URL ```http://localhost:8080``` into Authorized redirect URIs and hit Create Button and DOWNLOAD JSON.
 
-  8. Paste this JSON in Youtube-Upload subfolder and this json to ```client_secrets.json```.
+  8. Paste this JSON in Youtube-Upload subfolder and this json to ```client_secrets.json``` and install all necessary packages with ```npm i```
 
   9. Now go to ```OAuth consent screen``` in google cloud and add Test Users.
   
@@ -83,8 +82,8 @@ Run the following command to install the required dependencies from `requirement
   
 ## Uploading a file
   [NOTE]: Make sure you follow this steps to create client_secrets.json file [creating YOUTUBE CLIENT SECRETS](#creating-youtube-client-secrets)
-    
-  1. Follow steps 1-3 from the "Encoding a File" section.
+
+  1. Run the main.py script: ```sudo python main.py```
 
   2. Select "Upload the file to youtube" (Option 3) from the menu.
 
@@ -106,13 +105,11 @@ Run the following command to install the required dependencies from `requirement
 
 
 ## Fetching a video
-  1. Follow steps 1-3 from the "Encoding a File" section.
+  1. Select "To list the uploading videos of your channel" (Option 4) from the menu.
 
-  2. Select "To list the uploading videos of your channel" (Option 4) from the menu.
-
-  3. You will see all the videos that you have uploaded from the authorised channel with videoID.
+  2. You will see all the videos that you have uploaded from the authorised channel with videoID.
 
     [NOTES]: 
-    - If installing requirements.txt leads to any error then please try this script into linux environment and install manually.
-    - Downloading back your youtube videos into lower quality can corrupt the file. So please download videos into 720p format.
+    - If installing ```installation.sh``` leads to any error then please try this script into linux environment and install manually.
+    - Downloading back your youtube videos into lower quality can corrupt the file. So please download videos into ```720p format```.
                                                                                              ~Dikshit singh
