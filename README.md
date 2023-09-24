@@ -35,7 +35,7 @@ Before using this tool, make sure you have the following prerequisites installed
   3. Run the following command to install the required dependencies ```sudo sh installation.sh```
 
 ## Encoding a File
-  1. Run the main.py script: ```sudo python main.py```
+  1. Run the main.py script: ```python3 main.py```
 
   2. Select "Encode a file" (Option 1) from the menu.
 
@@ -46,7 +46,7 @@ Before using this tool, make sure you have the following prerequisites installed
   5. The tool will create a password-protected ZIP file with the encoded data and save it as locked.zip. It will also generate video frames containing the encoded data into encoded_videos folder and fun fact is that you could listen some of my favourite music in parallel.
 
 ## Decoding a File
-  1. Run the main.py script: ```sudo python main.py```
+  1. Run the main.py script: ```python3 main.py```
 
   2. Select "Decode a file" (Option 2) from the menu.
 
@@ -83,7 +83,7 @@ Before using this tool, make sure you have the following prerequisites installed
 ## Uploading a file
   [NOTE]: Make sure you follow this steps to create client_secrets.json file [creating YOUTUBE CLIENT SECRETS](#creating-youtube-client-secrets)
 
-  1. Run the main.py script: ```sudo python main.py```
+  1. Run the main.py script: ```python3 main.py```
 
   2. Select "Upload the file to youtube" (Option 3) from the menu.
 
