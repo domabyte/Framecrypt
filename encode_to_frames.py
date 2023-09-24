@@ -3,6 +3,7 @@ import cv2
 import time
 from PIL import Image, ImageDraw
 from tqdm import tqdm
+import subprocess
 
 def encode_to_frames(input_file):
     output_directory = "encoded_videos"
@@ -11,7 +12,7 @@ def encode_to_frames(input_file):
     if not os.path.exists(output_directory):
         os.makedirs(output_directory)
         
-    output_file_name = os.path.join(output_directory,"encoded_video")
+    output_file_name = "encoded_video"
     file_num = 1
 
    # Check if the encoded file exists
@@ -33,9 +34,7 @@ def encode_to_frames(input_file):
     current_x = 0
     current_y = 0
     frame_count = 0
-    video = cv2.VideoWriter(
-        f"{output_file_name}.mp4", cv2.VideoWriter_fourcc(*"mp4v"), 30, (video_width, video_height)
-    )
+    video = cv2.VideoWriter(f'{output_file_name}.mp4', cv2.VideoWriter_fourcc(*"mp4v"), 30, (video_width, video_height))
     img = Image.new("1", (video_width, video_height), "black")
     print("Generating frames, please wait...")
 
@@ -108,6 +107,7 @@ def encode_to_frames(input_file):
     print(f"Generated {frame_count} frames in {toc - tic:0.4f} seconds.")
     cv2.destroyAllWindows()
     os.remove(input_file)
+    subprocess.run(["sudo", "mv", f'{output_file_name}.mp4', output_directory])
 
 if __name__ == "__main__":
     encode_to_frames("locked.zip")
