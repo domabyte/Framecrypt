@@ -13,13 +13,14 @@ def encode_to_frames(input_file):
         os.makedirs(output_directory)
         
     output_file_name = "encoded_video"
+    output_file_path = os.path.join(output_directory,"encoded_video")
     file_num = 1
 
    # Check if the encoded file exists
-    if os.path.exists(f"{output_file_name}.mp4") is False:
+    if os.path.exists(f"{output_file_path}.mp4") is False:
         pass
     else:
-        while os.path.exists(f"{output_file_name}({file_num}).mp4"):
+        while os.path.exists(f"{output_file_path}({file_num}).mp4"):
             file_num += 1
         output_file_name = f"{output_file_name}({file_num})"
 

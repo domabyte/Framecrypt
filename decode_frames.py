@@ -37,7 +37,7 @@ def decode_frames(input_file):
         bytes(int(binary[i : i + 8], 2) for i in range(0, len(binary), 8)).decode("utf-8")
     )
     binary = ""
-
+    print("Decoding frames is in progress...")
     # Read and Decode Frames
     with open(output_file, "wb") as file:
         for a in tqdm(range(frames - 1), unit=" FP"):

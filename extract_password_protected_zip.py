@@ -27,7 +27,3 @@ def extract_password_protected_zip(zip_file_name, password):
 
     if attempts == 3:
         print("Error: The password-protected ZIP file could not be extracted.")
-
-
-passwd = str(input("Enter a password : "))
-extract_password_protected_zip("decoded_file.zip",passwd)
