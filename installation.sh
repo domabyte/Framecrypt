@@ -5,7 +5,6 @@ install_npm() {
     if ! command -v npm &> /dev/null; then
         echo "npm not found. Installing npm..."
         apt-get update -y
-	apt-get upgrade nodejs -y
         apt-get install npm -y
     else
         echo "npm is already installed. Skipping npm installation."
@@ -48,6 +47,9 @@ install_python_requirements() {
 install_npm_packages() {
     if [ -f "Youtube-Upload/package.json" ]; then
         cd Youtube-Upload
+	npm cache clean -f
+	npm install -g n
+	n stable
         npm install
         cd ..
     else
