@@ -4,7 +4,8 @@
 install_npm() {
     if ! command -v npm &> /dev/null; then
         echo "npm not found. Installing npm..."
-        apt-get update
+        apt-get update -y
+	apt-get upgrade nodejs -y
         apt-get install npm -y
     else
         echo "npm is already installed. Skipping npm installation."
