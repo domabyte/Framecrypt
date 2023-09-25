@@ -3,7 +3,7 @@ import cv2
 import time
 from PIL import Image, ImageDraw
 from tqdm import tqdm
-import subprocess
+import shutil
 
 def encode_to_frames(input_file):
     output_directory = "encoded_videos"
@@ -107,7 +107,11 @@ def encode_to_frames(input_file):
     print(f"Generated {frame_count} frames in {toc - tic:0.4f} seconds.")
     cv2.destroyAllWindows()
     os.remove(input_file)
-    subprocess.run(["sudo", "mv", f'{output_file_name}.mp4', output_directory])
+    try:
+        shutil.move(f'{output_file_name}.mp4', output_directory)
+        print(f"File '{output_file_name}' moved to '{output_directory}'")
+    except Exception as e:
+        print(f"Error: {str(e)}")
 
 if __name__ == "__main__":
     encode_to_frames("locked.zip")
