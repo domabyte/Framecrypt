@@ -1,10 +1,27 @@
 #!/bin/bash
 
+source ./commands/bind.sh
+
 main(){
-    if [ $# -lt 3 ]; then
+    if [ $# -lt 2 ]; then
         usage
     fi
-    
+
+    if [ $1 == "bind" ]; then
+        directory_path=""
+        if [ $# -eq 1 ]; then
+            directory_path="."
+        else
+            directory_path=$2
+        fi
+        echo "Directory path is : "$directory_path
+
+         getHorcruxPathsInDir "$directory_path"
+    else 
+        echo "Invalid command: $1"
+        usage
+    fi
+
 }
 
 usage(){
