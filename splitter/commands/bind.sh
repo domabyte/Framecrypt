@@ -17,3 +17,6 @@ getHorcruxPathsInDir() {
 }
 
 export -f getHorcruxPathsInDir
+
+
+#Make some changes
