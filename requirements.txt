@@ -1,5 +1,5 @@
 mpyg321==2.1.1
 opencv_python==4.8.0.76
-Pillow==10.0.1
+Pillow==10.2.0
 pyminizip==0.2.6
 tqdm==4.65.0
