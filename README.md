@@ -7,6 +7,7 @@ The **Encoder-Decoder Tool** is a command-line utility that allows you to encode
 ## Table of Contents
 - [Getting Started](#getting-started)
 - [Prerequisites](#prerequisites)
+- [Installation](#installation)
   - [Encoding a File](#encoding-a-file)
   - [Decoding a File](#decoding-a-file)
   - [Creating client secrets json](#creating-youtube-client-secrets)
